@@ -153,3 +153,46 @@ $$[1, -1, A - B - B^2, -A \cdot B]$$
 Assim, será utilizada a raizes positivo do polinômio de Z e esta será utilizada na Equação 9 para o cálculo do coeficiente de fugacidade.
 
 A função abaixo (**fug**) calcula os coeficientes de fugacidade:
+
+```python
+import numpy as np
+
+def fug(T, P, eq, n, prop_term):
+    P = P * 100000  # bar -> Pa
+    mole_fractions = n / sum(n)
+
+    # Cálculo das propriedades da mistura
+    Tc = np.dot(mole_fractions, [pt[1] for pt in prop_term])  # Temperatura crítica
+    Pc = np.dot(mole_fractions, [pt[0] for pt in prop_term]) * 100000  # Pressão crítica convertida de bar para Pa
+    omega = np.dot(mole_fractions, [pt[2] for pt in prop_term])  # Fator acêntrico
+    
+    R = 8.314  # J/(mol*K)
+    
+    if eq == 'ideal':
+        res = 1  # Para gás ideal, o coeficiente de fugacidade é 1
+
+    elif eq == 'peng_robinson':
+        Tr = T / Tc
+        Pr = P / Pc
+        kappa = 0.37464 + 1.54226 * omega - 0.26992 * omega**2
+        alpha = (1 + kappa * (1 - np.sqrt(Tr)))**2
+        a = 0.45724 * (R**2 * Tc**2) / Pc
+        b = 0.07780 * R * Tc / Pc
+        a_alpha = a * alpha
+        A = a_alpha * P / (R**2 * T**2)
+        B = b * P / (R * T)
+        
+        # Cálculo do Z (fator de compressibilidade)
+        coefficients = [1, -1 + B, A - 3*B**2, -A*B + B**2 + B**3]
+        Z_roots = np.roots(coefficients)
+        Z = max(Z_roots[np.isreal(Z_roots)])
+        
+        # Cálculo do coeficiente de fugacidade
+        ln_phi = (b / (b * R * T)) * (Z - 1) - np.log(Z - B)
+        ln_phi -= A / (2 * np.sqrt(2) * B) * np.log((Z + (1 + np.sqrt(2)) * B) / (Z + (1 - np.sqrt(2)) * B))
+        res = np.exp(ln_phi)
+
+    return res
+
+```
+
