@@ -355,3 +355,13 @@ plt.show()
 * Resultados:
 
 <img src="imgs/res.png" alt="Resultados" title="Resultados" width="600" height="400"/>
+
+A figura acima apresenta os resultados obtidos das simulações. O comportamento da formação dos componentes estão de acordo com o observado em literaturas verificadas.
+
+Com isso concluimos o desenvolvimento do código simplificado para o cálculo das composições na condição de equilíbrio termodinâmico utilizando a metodologia da minimização da energia de Gibbs.
+
+Referências:
+
+SMITH, Joseph Mauk et al. Introduction to chemical engineering thermodynamics. Singapore: McGraw-Hill, 1949.
+
+---
