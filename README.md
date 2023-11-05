@@ -3,12 +3,17 @@
 Como exemplo, verificaremos o processo de reforma a vapor de metano.
 
 ```python
-# Seu código Python vai aqui
-def hello_world():
-    print("Hello, GitHub!")
+"""
+Componentes considerados:
 
-hello_world()
+H2O
+CH4
+CO2
+CO
+H2
 
+"""
+```
 
 O polinômio utilizado para o cálculo das capacidades caloríficas é apresentado abaixo:
 
