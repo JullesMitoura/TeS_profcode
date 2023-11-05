@@ -1,5 +1,5 @@
-# TeS
-Thermodynamic Equilibrium Simulation
+# TeS - Thermodynamic Equilibrium Simulation
 
 
-<img src = "imgs/TeS_img.png">
+![Descrição da foto](./imgs/logo_TeS.jpq "Logo com descrição")
+
