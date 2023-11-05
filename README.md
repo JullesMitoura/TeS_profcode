@@ -1,1 +1,1 @@
-![Logo do TeS](imgs/logo_TeS.jpg "Logo do TeS com descrição")
+![Logo do TeS](imgs/logo_img.png "Logo do TeS com descrição")
