@@ -119,3 +119,9 @@ def gibbs_pad(T, prop_form, CP_data):
     return results
 
 ```
+
+A função acima faz o seguinte:
+
+$$
+\mu _i^0 = \frac {T}{T^0}.\Delta G_f^{298.15 K} - T.\int_{T_0}^{T} \frac {\Delta H_f^{298.15 K} + \int_{T_0}^{T} (CPA + CPB \cdot T + CPC \cdot T^2 + \frac{CPD}{T^2}) \, dT}{T^2} dT
+$$
