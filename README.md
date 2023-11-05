@@ -53,3 +53,19 @@ prop_form = [[-241818,-228572],    # H2O
              [-110525,-137169],    # CO
              [0, 0]]               # H2
 ```
+
+* Propriedades críticas termodinâmicas dos componentes puros
+
+```python
+# Informações obtidas do livro Introduction of Chemical Engineering Thermodynamics
+# Tc - Temperatura crítica (K)
+# Pc - Pressão crítica (bar)
+# omega - fator acentrico (-)
+
+           # Pc, Tc, omega
+prop_term = [[220.55,647.1,0.345],    # H2O
+             [45.99,190.6,0.012],     # CH4
+             [73.83,304.2,0.224],     # CO2
+             [34.99,132.9,0.048],     # CO
+             [13.13,33.19,-0.216]]    # H2
+```
