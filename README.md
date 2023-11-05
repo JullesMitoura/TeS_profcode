@@ -197,6 +197,7 @@ def fug(T, P, eq, n, prop_term):
 ```
 
 Temos a função que calcula a energia de Gibbs padrão e temos também a função para o cálculo dos coeficientes de fugacidade. O passo seguinte será definir a rotina de otimização.
+
 ---
 
 ### Parte 03: Minimização da energia de Gibbs
@@ -240,7 +241,45 @@ $$ n_i^j \geq 0 $$
 
 2. Conservação do número de átomos:
 
-$$ \sum _{i}^{NC} a_{mi} (\sum _{j}^{NF} n_i^j) =  \sum _{i}^{NC} a_{mi} n_i^0 $$
-
+$$\sum _{i}^{NC} a_{mi} (\sum _{j}^{NF} n_i^j) = \sum _{i}^{NC} a_{mi} n_i^0$$
 
 Escrevendo a primeira restrição:
+
+```python
+# Quantidade inicial de mols por componente:
+#    H2O CH4 CO2 CO H2
+n0 = [1,  0.5,  0,  0, 0]
+
+max_C = 0*n0[0]+1*n0[1]+1*n0[2]+1*n0[3]+0*n0[4]
+max_H = 2*n0[0]+4*n0[1]+0*n0[2]+0*n0[3]+2*n0[4]
+max_O = 1*n0[0]+0*n0[1]+2*n0[2]+1*n0[3]+0*n0[4] 
+
+max_H2O = min(max_O, max_H/2)
+max_CH4 = min(max_C, max_H/4)
+max_CO2 = min(max_C, max_O/2)
+max_CO = min(max_C, max_O)
+max_H2 = max_H/2
+
+bnds = ((0, max_H2O), (0, max_CH4), (0, max_CO2), (0, max_CO), (0, max_H2))
+```
+
+No caso acima não só definimos a não negatividade de números de mols, definimos também os limites de formação dos componentes com base na quantidade de átomos.
+
+Escrevendo a segunda restrição:
+
+```python
+# Inicialmente definiremos a matriz com as estruturas dos componentes envolvidos na reação:
+def element_balance(n,n0):
+                           # C  H  O
+    A = np.array([
+                            [0, 2, 1],  # H2O
+                            [1, 4, 0],  # CH4
+                            [1, 0, 2],  # CO2
+                            [1, 0, 1],  # CO
+                            [0, 2, 0]   # H2
+                        ])
+    return np.matmul(n, A) - np.matmul(n0, A)
+
+# A restrição:
+cons = [{'type': 'eq', 'fun': element_balance, 'args': [n0]}]
+```
