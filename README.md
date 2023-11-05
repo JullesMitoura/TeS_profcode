@@ -77,3 +77,15 @@ Até este ponto fizemos a inserção das informações necessárias para os cál
 Como já dito, o objetivo é minimizar a energia de Gibbs e esta será escrita na forma de programação não-linear como apresenta a equação abaixo:
 
 $$min G = \sum_{i=1}^{NC} \sum_{j=1}^{NF} n_i^j \mu_i^j$$
+
+Tendo as informações apresentadas na **Parte 01**, agora faremos o cálculo da energia de Gibbs. A equação abaixo apresentação a realção entra entalpia e capacidade calorífica.
+
+$$\frac{\partial \bar{H}_i^g}{\partial T} \right) = C_{p,i}^g \quad \text{for } i=1,\ldots,NC$$
+
+Tendo conhecimento da realação da entalpia com a temperatura, o passo seguinte é o cálculo do potencial químico. A equação abaixo apresenta a correlação para o cálculo dos potenciais químicos.
+
+$$frac{\partial}{\partial T} \left( \frac{\mu_i^g}{RT} \right) = -\frac{\bar{H}_i^g}{RT^2} \quad \text{para } i=1,\ldots,NC$$
+
+Lembrando que o polinômio utilizado para o cálculo da capacidade calorífica foi apresentado na Equação 1.
+
+Assim, a função abaixo (**gibbs_pad**) calcula os potenciais químicos de acordo com a Equação 4.
