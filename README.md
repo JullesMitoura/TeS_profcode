@@ -15,9 +15,9 @@ H2
 """
 ```
 
-###* Parte 01: Dados de entrada sobre os componentes químicos envolvidos
+###Parte 01: Dados de entrada sobre os componentes químicos envolvidos
 
-* Parte 01.1: Calculo das capacidades caloríficas
+* Calculo das capacidades caloríficas
 
 O polinômio utilizado para o cálculo das capacidades caloríficas é apresentado abaixo:
 
