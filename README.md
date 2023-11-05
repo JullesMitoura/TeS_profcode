@@ -1,5 +1,3 @@
 # TeS - Thermodynamic Equilibrium Simulation
 
-
-![Descrição da foto](imgs/logo_TeS.jpq "Logo com descrição")
-
+![Logo do TeS](imgs/logo_TeS.jpg "Logo do TeS com descrição")
