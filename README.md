@@ -352,4 +352,4 @@ plt.show()
 ```
 * Resultados:
 
-<img src="imgs/res.png" alt="Resultados" title="Resultados" width="600" height="500"/>
+<img src="imgs/res.png" alt="Resultados" title="Resultados" width="600" height="600"/>
