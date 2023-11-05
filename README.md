@@ -326,6 +326,8 @@ results = pd.DataFrame(result, columns=Componentes)
 results['Temperature (K)'] = temperature
 ```
 
+Perceba que o método de otimização utilizado no caso acima foi o `trust-constr`. O método de otimização trust-constr faz parte de uma classe de algoritmos conhecidos como métodos de região de confiança. Este método é usado para resolver problemas de otimização restrita e não restrita. O nome "região de confiança" refere-se à estratégia do algoritmo de construir um modelo local do problema de otimização, que é considerado confiável apenas dentro de uma certa região ao redor do ponto atual.
+
 ```python
 import matplotlib.pyplot as plt
 
