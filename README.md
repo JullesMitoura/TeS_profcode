@@ -241,7 +241,10 @@ $$ n_i^j \geq 0 $$
 
 2. Conservação do número de átomos:
 
-$$\sum _{i}^{NC} a_{mi} (\sum _{j}^{NF} n_i^j) = \sum _{i}^{NC} a_{mi} n_i^0$$
+$$
+\sum_{i=1}^{NC} a_{mi} \left(\sum_{j=1}^{NF} n_{i}^{j}\right) = \sum_{i=1}^{NC} a_{mi} n_{i}^{0}
+$$
+
 
 Escrevendo a primeira restrição:
 
@@ -282,4 +285,68 @@ def element_balance(n,n0):
 
 # A restrição:
 cons = [{'type': 'eq', 'fun': element_balance, 'args': [n0]}]
+```
+Assim, definimos ambas as restrições necessárias. Iniciaremos agora a etapa de otimização.
+
+* Otimização:
+
+Utilizaremos a biblioteca `scipy.optimize`.
+
+```python
+# Definindo as variáveis de entrada
+
+Tmin = 600
+Tmax = 1100
+ntemp = 30
+
+P = 1
+T = np.linspace(Tmin,Tmax,ntemp) # T in K
+```
+
+```python
+from scipy.optimize import minimize
+import pandas as pd
+
+result = []
+temperature = []
+
+init = [0.5]*5
+
+for j in range(len(T)):
+    
+    # Perform the optimization.
+    sol = minimize(gibbs, init, args=(T[j], P), 
+                    method='trust-constr', bounds=bnds, constraints=cons, options={'disp': False, 'maxiter': 1000})
+
+    result.append(sol.x)
+    temperature.append(T[j])
+
+Componentes = ['H2O','CH4','CO2','CO','H2']
+results = pd.DataFrame(result, columns=Componentes)
+results['Temperature (K)'] = temperature
+```
+
+```python
+import matplotlib.pyplot as plt
+
+# Definindo 'Temperature (K)' como o índice do DataFrame, se já não estiver definido.
+results.set_index('Temperature (K)', inplace=True)
+
+# Iniciando a figura do matplotlib
+plt.figure(figsize=(6, 4))
+
+# Plotando cada coluna
+for column in results.columns:
+    plt.plot(results.index, results[column], label=column)
+
+# Adicionando rótulos e título
+plt.xlabel('Temperature (K)')
+plt.ylabel('Mols')
+
+# Adicionando a legenda. 'loc' pode ser alterado para posicionar a legenda onde você desejar.
+plt.legend(loc='upper left')
+
+# Mostrando o gráfico
+plt.grid()
+plt.show()
 ```
