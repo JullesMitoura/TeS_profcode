@@ -62,10 +62,18 @@ prop_form = [[-241818,-228572],    # H2O
 # Pc - Pressão crítica (bar)
 # omega - fator acentrico (-)
 
-           # Pc, Tc, omega
+            # Pc,     Tc,  omega
 prop_term = [[220.55,647.1,0.345],    # H2O
              [45.99,190.6,0.012],     # CH4
              [73.83,304.2,0.224],     # CO2
              [34.99,132.9,0.048],     # CO
              [13.13,33.19,-0.216]]    # H2
 ```
+
+### Parte 02: Calculo da energia de Gibbs
+
+Até este ponto fizemos a inserção das informações necessárias para os cálculos que faremos com o objetivo de minimizar a energia de Gibbs dos sistema.
+
+Como já dito, o objetivo é minimizar a energia de Gibbs e esta será escrita na forma de programação não-linear como apresenta a equação abaixo:
+
+$$min G = \sum_{i=1}^{NC} \sum_{j=1}^{NF} n_i^j \mu_i^j$$
