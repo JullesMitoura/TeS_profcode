@@ -133,3 +133,23 @@ $$\min G = \sum_{i=1}^{NC} n_i^g \mu_i^g $$
 Onde:
 
 $$\mu _i^g = \mu _i^0 + R.T.(ln(\phi_i)+ln(P)+ln(y_i)) $$
+
+Para os calculos dos coeficientes de fugacidade, teremos duas possibilidades:
+
+1. Gás ideal: 
+
+$$\phi = 1 $$
+
+2. Gás não ideal:
+
+Será utilizada a equação de estado de Peng-Robinson.
+
+$$\ln\phi = \left(\frac{b_\alpha}{b}\right) (Z_\text{vapor} - 1) - \ln(Z_\text{vapor} - B) + \frac{A}{2\sqrt{2} B} \ln\left(\frac{Z_\text{vapor} + (1 + \sqrt{2}) B}{Z_\text{vapor} + (1 - \sqrt{2}) B}\right) $$
+
+Serão calculadas as raízes de Z que é escrito na forma de um polinômio com os coeficientes descritos abaixo:
+
+$$[1, -1, A - B - B^2, -A \cdot B]$$
+
+Assim, será utilizada a raizes positivo do polinômio de Z e esta será utilizada na Equação 9 para o cálculo do coeficiente de fugacidade.
+
+A função abaixo (**fug**) calcula os coeficientes de fugacidade:
