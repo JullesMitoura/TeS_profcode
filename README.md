@@ -350,3 +350,6 @@ plt.legend(loc='upper left')
 plt.grid()
 plt.show()
 ```
+* Resultados:
+
+![Resultados](imgs/res.png "Resultados")
