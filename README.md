@@ -14,7 +14,7 @@ H2
 
 """
 ```
-
+---
 ### Parte 01: Dados de entrada sobre os componentes químicos envolvidos
 
 * Calculo das capacidades caloríficas
@@ -69,7 +69,7 @@ prop_term = [[220.55,647.1,0.345],    # H2O
              [34.99,132.9,0.048],     # CO
              [13.13,33.19,-0.216]]    # H2
 ```
-
+---
 ### Parte 02: Calculo da energia de Gibbs
 
 Até este ponto fizemos a inserção das informações necessárias para os cálculos que faremos com o objetivo de minimizar a energia de Gibbs dos sistema.
