@@ -80,7 +80,7 @@ $$min G = \sum_{i=1}^{NC} \sum_{j=1}^{NF} n_i^j \mu_i^j$$
 
 Tendo as informações apresentadas na **Parte 01**, agora faremos o cálculo da energia de Gibbs. A equação abaixo apresentação a realção entra entalpia e capacidade calorífica.
 
-$$\frac{\partial \bar{H}_i^g}{\partial T}$$
+$$\frac{\partial \bar{H}_i^g}{\partial T} = Cp_i^g$$
 
 Tendo conhecimento da realação da entalpia com a temperatura, o passo seguinte é o cálculo do potencial químico. A equação abaixo apresenta a correlação para o cálculo dos potenciais químicos.
 
