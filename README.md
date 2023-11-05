@@ -125,3 +125,11 @@ A função acima faz o seguinte:
 $$
 \mu_i^0 = \frac {T}{T^0} \Delta G_f^{298.15 K} - T \int_{T_0}^{T} \frac {\Delta H_f^{298.15 K} + \int_{T_0}^{T} (CPA + CPB \cdot T + CPC \cdot T^2 + \frac{CPD}{T^2}) \, dT}{T^2} \, dT
 $$
+
+Bom, agora temos a função que calculo os potenciais químicos. Este código considera somente a formação de componente na fase *g*, assim, a função objetivo (minG) pode ser reescrita conforme apresena a equação abaixo:
+
+$$\min G = \sum_{i=1}^{NC} n_i^g \mu_i^g $$
+
+Onde:
+
+$$\mu _i^g = \mu _i^0 + R.T.(ln(\phi_i)+ln(P)+ln(y_i)) $$
