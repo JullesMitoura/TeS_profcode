@@ -196,3 +196,51 @@ def fug(T, P, eq, n, prop_term):
 
 ```
 
+Temos a função que calcula a energia de Gibbs padrão e temos também a função para o cálculo dos coeficientes de fugacidade. O passo seguinte será definir a rotina de otimização.
+---
+
+### Parte 03: Minimização da energia de Gibbs
+
+* Definindo a função objetivo:
+
+```python
+def gibbs(n, T, P):
+    R = 8.314  # J/mol·K
+    eq = 'peng_robinson'
+
+    # Garantir que n não tenha valores nulos ou negativos para evitar erros no cálculo do logaritmo
+    for i in range(n.shape[0]):
+            if n[i] <= 0:
+                n[i] = 1e-20
+
+    # Calcular Gibbs padrão de formação a partir da função gibbs_pad
+    dfg_gas = gibbs_pad(T, prop_form, CP_data)
+
+    # Calcular o coeficiente de fugacidade para cada componente da mistura
+    phii = fug(T, P, eq, n, prop_term)
+
+    # Calcular o potencial químico mi para os gases na mistura
+    mi_gas = dfg_gas + R * T * (np.log(phii) + np.log(n / np.sum(n)) + np.log(P))
+
+    # Calcular a energia de Gibbs total
+    total_gibbs = np.sum(mi_gas * n)
+
+    return total_gibbs
+```
+
+* Definição das restrições:
+
+Conhecemos a função objetivo (minG), agora precisamos definir as restrições para direcionar a busca pela solução.
+
+O espaço de possíveis soluções deve ser restrito a duas condições:
+
+1. Não negatividade de mols:
+
+$$ n_i^j \geq 0 $$
+
+2. Conservação do número de átomos:
+
+$$ \sum _{i}^{NC} a_{mi} (\sum _{j}^{NF} n_i^j) =  \sum _{i}^{NC} a_{mi} n_i^0 $$
+
+
+Escrevendo a primeira restrição:
