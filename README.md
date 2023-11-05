@@ -15,7 +15,9 @@ H2
 """
 ```
 
-* Parte 01: Cálculo das capacidades caloríficas
+###* Parte 01: Dados de entrada sobre os componentes químicos envolvidos
+
+* Parte 01.1: Calculo das capacidades caloríficas
 
 O polinômio utilizado para o cálculo das capacidades caloríficas é apresentado abaixo:
 
@@ -36,3 +38,5 @@ CP_data = [[3.47,0.00145,0,12100],               # H2O
            [3.249,0.000422,0,8300]]              # H2
 
 ```
+
+* Parte 01.2: Propriedades termodinâmicas de formação
