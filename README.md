@@ -86,6 +86,36 @@ Tendo conhecimento da realação da entalpia com a temperatura, o passo seguinte
 
 $$\frac{\partial}{\partial T} \left( \frac{\mu_i^g}{RT} \right) = -\frac{\bar{H}_i^g}{RT^2} \quad \text{para } i=1,\ldots,NC$$
 
-Lembrando que o polinômio utilizado para o cálculo da capacidade calorífica foi apresentado na Equação 1.
+Assim, a função abaixo (**gibbs_pad**) calcula os potenciais químicos.
 
-Assim, a função abaixo (**gibbs_pad**) calcula os potenciais químicos de acordo com a Equação 4.
+```python
+from scipy.integrate import quad
+
+def gibbs_pad(T, prop_form, CP_data):
+    R = 8.314  # J/mol·K
+    T0 = 298.15  # Temperatura de referência em Kelvin
+    
+    results = []
+
+    # Itera sobre as propriedades de formação e os dados de Cp juntos
+    for (deltaH, deltaG), (CPA, CPB, CPC, CPD) in zip(prop_form, CP_data):
+        # Define a função Cp(T_prime) com base nos dados de CP
+        def cp(T_prime):
+            return R * (CPA + CPB * T_prime + CPC * T_prime ** 2 + CPD / T_prime ** 2)
+
+        # Inner integral
+        def inner_integral(T_prime):
+            value, _ = quad(cp, T0, T_prime)
+            return (deltaH + value) / T_prime ** 2
+
+        # Outer integral
+        integral_value, _ = quad(inner_integral, T0, T)
+    
+        # Calculating mu_i using the provided formula
+        mu_i = T * (deltaG / T0 - integral_value)
+        
+        results.append(mu_i)
+
+    return results
+
+```
