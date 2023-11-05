@@ -84,7 +84,7 @@ $$\frac{\partial \bar{H}_i^g}{\partial T} \right) = C_{p,i}^g \quad \text{for } 
 
 Tendo conhecimento da realação da entalpia com a temperatura, o passo seguinte é o cálculo do potencial químico. A equação abaixo apresenta a correlação para o cálculo dos potenciais químicos.
 
-$$frac{\partial}{\partial T} \left( \frac{\mu_i^g}{RT} \right) = -\frac{\bar{H}_i^g}{RT^2} \quad \text{para } i=1,\ldots,NC$$
+$$\frac{\partial}{\partial T} \left( \frac{\mu_i^g}{RT} \right) = -\frac{\bar{H}_i^g}{RT^2} \quad \text{para } i=1,\ldots,NC$$
 
 Lembrando que o polinômio utilizado para o cálculo da capacidade calorífica foi apresentado na Equação 1.
 
