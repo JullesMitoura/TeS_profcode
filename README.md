@@ -39,4 +39,17 @@ CP_data = [[3.47,0.00145,0,12100],               # H2O
 
 ```
 
-* Parte 01.2: Propriedades termodinâmicas de formação
+* Propriedades termodinâmicas de formação
+  
+```python
+# Informações obtidas do livro Introduction of Chemical Engineering Thermodynamics
+# deltaH - Entalpia de formação a 298.15 K (J/mol)
+# deltaG - Energia de Gibbs de formação a 298.15 K (J/mol)
+
+           # deltaH, deltaG
+prop_form = [[-241818,-228572],    # H2O
+             [-74520,-50460],      # CH4
+             [-393509,-394359],    # CO2
+             [-110525,-137169],    # CO
+             [0, 0]]               # H2
+```
